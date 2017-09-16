@@ -23,7 +23,7 @@ public class Find {
 
     //二分查找
     public static int binSearch(int[] arr, int dst) {
-        Sort.sort(arr);
+        Sort.quickSort(arr, 0, arr.length - 1);
         int low = 0;
         int high = arr.length - 1;
         int mid;

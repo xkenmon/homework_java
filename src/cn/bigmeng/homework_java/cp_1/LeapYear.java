@@ -2,8 +2,11 @@ package cn.bigmeng.homework_java.cp_1;
 
 public class LeapYear {
     public static void main(String[] args) {
-        long year = 2016;
-        System.out.println(year + " is leap? " + getLeap(year));
+        long[] years = new long[3000];
+        for (int i = 0; i < years.length; i++)
+            years[i] = i;
+        for (long year : years)
+            System.out.println("公元 "+year + " 年是 " + (getLeap(year)?"闰年":"平年"));
     }
 
     private static boolean getLeap(long year) {

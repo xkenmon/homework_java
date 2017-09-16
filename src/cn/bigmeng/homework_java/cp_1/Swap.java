@@ -4,17 +4,15 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Swap {
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
-        MyClass a = new MyClass();
-        MyClass b = new MyClass();
+        MyClass a = new MyClass(1);
+        MyClass b = new MyClass(2);
 
-        a.setElem(1);
-        b.setElem(2);
         System.out.println("before swap: a = " + a.getElem() + ", b = " + b.getElem());
-        swap(a,b);
+        swap(a, b);
         System.out.println("after swap: a = " + a.getElem() + ", b = " + b.getElem());
     }
 
-    private static void swap(MyClass a, MyClass b){
+    private static void swap(MyClass a, MyClass b) {
         MyClass temp = new MyClass();
         temp.setElem(a.getElem());
         a.setElem(b.getElem());
@@ -23,6 +21,14 @@ public class Swap {
 }
 
 class MyClass {
+    public MyClass() {
+
+    }
+
+    public MyClass(Object elem) {
+        this.elem = elem;
+    }
+
     public Object getElem() {
         return elem;
     }
@@ -31,6 +37,6 @@ class MyClass {
         this.elem = elem;
     }
 
-    Object elem;
+    private Object elem;
 
 }
