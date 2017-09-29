@@ -12,7 +12,8 @@ public class Last {
         float i = sc.nextInt();
         float sum = 1f;
         for (int j = 1; j < i; j++) {
-            sum += j / recursion(j);
+            float r = recursion(j);
+            sum += j / r;
         }
         System.out.println("rst : " + sum);
     }

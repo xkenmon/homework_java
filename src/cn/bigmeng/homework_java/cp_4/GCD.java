@@ -19,5 +19,5 @@ public class GCD {
         if (n == 0)
             return m;
         return euclid(n, m % n);
-    }
+     }
 }
