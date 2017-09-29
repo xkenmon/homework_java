@@ -9,12 +9,10 @@ public class LeapYear {
             System.out.println("公元 "+year + " 年是 " + (getLeap(year)?"闰年":"平年"));
     }
 
-    private static boolean getLeap(long year) {
+    public static boolean getLeap(long year) {
         boolean isLeap = false;
         if (year % 4 == 0) {
-            isLeap = true;
-            if (year % 100 == 0 && year % 400 != 0)
-                isLeap = false;
+            isLeap = year % 100 != 0 || year % 400 == 0;
             if (year % 3200 == 0)
                 isLeap = false;
         }

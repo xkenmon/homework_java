@@ -2,13 +2,13 @@ package cn.bigmeng.homework_java.cp_1;
 
 public class Fibonacci {
     public static void main(String[] args) {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 100; i++) {
             System.out.println(i + ":" + get(i));
         }
     }
 
-    private static int get(int n) {
-        int[] arr = new int[2];
+    private static long get(int n) {
+        long[] arr = new long[2];
         arr[0] = 0;
         arr[1] = 1;
         if (n <= 0)
@@ -16,10 +16,10 @@ public class Fibonacci {
         if (n < 3) {
             return arr[n - 1];
         }
-        int rst = 0;
+        long rst = 0;
         for (int i = 3; i <= n; i++) {
             rst = arr[0] + arr[1];
-            int temp = arr[0];
+            long temp = arr[0];
             arr[0] = arr[1];
             arr[1] += temp;
         }
