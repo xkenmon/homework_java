@@ -1,0 +1,1 @@
+javac -d ..\target\classes\ -encoding utf8 cn\bigmeng\homework_java\%1

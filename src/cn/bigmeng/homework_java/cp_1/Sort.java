@@ -79,7 +79,12 @@ public class Sort {
         }
     }
 
-    //快速排序
+    /**
+     * 快速排序算法
+     * @param arr 需要排序的数组
+     * @param start 排序开始的位置
+     * @param end 若排序整个数组传入 arr.length-1
+     */
     public static void quickSort(int[] arr, int start, int end) {
         if (start >= end)
             return;
@@ -90,13 +95,13 @@ public class Sort {
                 left++;
             while (arr[right] >= mid && left < right)
                 right--;
-//            swap(left, right);
+            //            swap(left, right);
             int temp = arr[left];
             arr[left] = arr[right];
             arr[right] = temp;
         }
         if (arr[left] >= arr[end]) {
-//            swap(left, end);
+            //            swap(left, end);
             int temp = arr[left];
             arr[left] = arr[end];
             arr[end] = temp;

@@ -1,0 +1,1 @@
+java -cp ..\target\classes cn.bigmeng.homework_java.%1
