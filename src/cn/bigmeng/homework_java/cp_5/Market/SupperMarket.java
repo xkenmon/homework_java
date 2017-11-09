@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SupperMarket {
-    private ArrayList<Goods> shelf;
+    private ArrayList<Goods> shelf = new ArrayList<Goods>();
 
     public Goods queryName(String goodsName) {
         for (Goods goods : shelf) {
@@ -35,19 +35,43 @@ public class SupperMarket {
         return goodsArrayList;
     }
 
-    public GoodsMessage check() {
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        for (Goods goods : shelf) {
-            if (map.containsKey(goods.getProducer())) {
-                map.put(goods.getProducer(), map.get(goods.getProducer()) + 1);
-            } else {
-                map.put(goods.getProducer(), 0);
+    public Goods sale(Goods goods){
+        for (Goods g:shelf){
+            if (goods.equals(g)){
+                shelf.remove(g);
+                return g;
             }
         }
-        return new GoodsMessage(shelf.size(), map);
+        return null;
+    }
+
+    public GoodsMessage check() {
+        HashMap<String, ArrayList<Goods>> prodMap = new HashMap<String, ArrayList<Goods>>();
+        HashMap<Integer, ArrayList<Goods>> priceMap = new HashMap<Integer, ArrayList<Goods>>();
+        for (Goods goods : shelf) {
+            if (prodMap.containsKey(goods.getProducer())) {
+                prodMap.get(goods.getProducer()).add(goods);
+            } else {
+                ArrayList<Goods> t = new ArrayList<Goods>();
+                t.add(goods);
+                prodMap.put(goods.getProducer(), t);
+            }
+            if (priceMap.containsKey(goods.getPrice())) {
+                priceMap.get(goods.getPrice()).add(goods);
+            } else {
+                ArrayList<Goods> t = new ArrayList<Goods>();
+                t.add(goods);
+                priceMap.put(goods.getPrice(), t);
+            }
+        }
+        return new GoodsMessage(shelf.size(), prodMap, priceMap);
     }
 
     public void add(Goods goods) {
         shelf.add(goods);
+    }
+
+    public void addAll(ArrayList<Goods> goodsArrayList) {
+        shelf.addAll(goodsArrayList);
     }
 }

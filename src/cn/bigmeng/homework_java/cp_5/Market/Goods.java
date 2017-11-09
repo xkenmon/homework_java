@@ -5,7 +5,11 @@ public class Goods {
     private int price;
     private String producer;
 
-
+    public Goods(String name, int price, String producer) {
+        this.name = name;
+        this.price = price;
+        this.producer = producer;
+    }
 
     public String getName() {
         return name;
@@ -33,10 +37,15 @@ public class Goods {
 
     @Override
     public String toString() {
-        return "Goods{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", producer='" + producer + '\'' +
-                '}';
+        return "商品名称:" + name + "\t价格：" + price + "\t产地:" + producer;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (Goods.class != obj.getClass()) {
+            return false;
+        }
+        Goods goods = (Goods) obj;
+        return goods.name.equals(name) && goods.getPrice() == price && goods.getProducer().equals(producer);
     }
 }
