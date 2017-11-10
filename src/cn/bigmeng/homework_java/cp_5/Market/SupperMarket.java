@@ -35,11 +35,18 @@ public class SupperMarket {
         return goodsArrayList;
     }
 
-    public Goods sale(Goods goods){
+    public Goods sale(Goods goods, int money) {
         for (Goods g:shelf){
             if (goods.equals(g)){
-                shelf.remove(g);
-                return g;
+                if (money > g.getPrice()) {
+                    try {
+                        g.reduceCount();
+                    } catch (InsufficientFundsException e) {
+                        System.out.println(e.getMessage());
+                        return null;
+                    }
+                    return g;
+                }
             }
         }
         return null;
@@ -73,5 +80,24 @@ public class SupperMarket {
 
     public void addAll(ArrayList<Goods> goodsArrayList) {
         shelf.addAll(goodsArrayList);
+    }
+
+    public Goods sale(String goodsName, int money) {
+        Goods goods = queryName(goodsName);
+        if (goods == null) {
+            return null;
+        }
+        if (money > goods.getPrice()) {
+            try {
+                goods.reduceCount();
+            } catch (InsufficientFundsException e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+            return goods;
+        } else {
+            System.out.println("你的钱不够哦!\t需要: " + goods.getPrice() + "\t你有: " + money);
+        }
+        return null;
     }
 }

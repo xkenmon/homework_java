@@ -4,11 +4,13 @@ public class Goods {
     private String name;
     private int price;
     private String producer;
+    private long count;
 
-    public Goods(String name, int price, String producer) {
+    public Goods(String name, int price, String producer, int count) {
         this.name = name;
         this.price = price;
         this.producer = producer;
+        this.count = count;
     }
 
     public String getName() {
@@ -35,9 +37,27 @@ public class Goods {
         this.producer = producer;
     }
 
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+    }
+
+    public void reduceCount() throws InsufficientFundsException {
+        synchronized (this) {
+            if (count < 1) {
+                throw new InsufficientFundsException(this);
+            } else {
+                count--;
+            }
+        }
+    }
+
     @Override
     public String toString() {
-        return "商品名称:" + name + "\t价格：" + price + "\t产地:" + producer;
+        return "商品名称:" + name + "\t价格：" + price + "\t产地:" + producer + "\t库存数量:" + count;
     }
 
     @Override
